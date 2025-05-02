@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="20" alignment="CENTER" fx:controller="client.controllers.AdminWindowController" style="-fx-padding: 30;">
+    <!-- Заголовок окна -->
+    <Label text="Управление пользователями" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+    <ListView fx:id="userListView" style="-fx-pref-width: 300px; -fx-pref-height: 200px;"/>
+    <Button text="Добавить пользователя" fx:id="addUserButton" style="-fx-background-color: #007BFF; -fx-text-fill: white;"/>
+    <Button text="Удалить пользователя" fx:id="deleteUserButton" style="-fx-background-color: #FF0000; -fx-text-fill: white;"/>
+</VBox>

@@ -1,103 +1,94 @@
-package client;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.net.Socket;
-
-public class AuthWindow {
-
-    private static JLabel statusLabel;
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Авторизация");
-        frame.setSize(400, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JPanel panel = new JPanel();
-        frame.add(panel);
-        placeComponents(panel);
-
-        frame.setVisible(true);
-    }
-
-    private static void placeComponents(JPanel panel) {
-        panel.setLayout(null);
-
-        JLabel userLabel = new JLabel("Имя пользователя:");
-        userLabel.setBounds(10, 20, 150, 25);
-        panel.add(userLabel);
-
-        JTextField userText = new JTextField(20);
-        userText.setBounds(160, 20, 165, 25);
-        panel.add(userText);
-
-        JLabel passwordLabel = new JLabel("Пароль:");
-        passwordLabel.setBounds(10, 50, 150, 25);
-        panel.add(passwordLabel);
-
-        JPasswordField passwordText = new JPasswordField(20);
-        passwordText.setBounds(160, 50, 165, 25);
-        panel.add(passwordText);
-
-        JButton loginButton = new JButton("Войти");
-        loginButton.setBounds(10, 80, 150, 25);
-        panel.add(loginButton);
-
-        JButton registerButton = new JButton("Зарегистрироваться");
-        registerButton.setBounds(170, 80, 150, 25);
-        panel.add(registerButton);
-
-        statusLabel = new JLabel("");
-        statusLabel.setBounds(10, 110, 300, 25);
-        panel.add(statusLabel);
-
-        loginButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String username = userText.getText();
-                String password = new String(passwordText.getPassword());
-                sendDataToServer("LOGIN", username, password);
-            }
-        });
-
-        registerButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String username = userText.getText();
-                String password = new String(passwordText.getPassword());
-
-                // Проверка длины пароля
-                if (password.length() < 8) {
-                    statusLabel.setText("❌ Пароль должен содержать минимум 8 символов.");
-                    return;
-                }
-
-                sendDataToServer("REGISTER", username, password);
-            }
-        });
-    }
-
-    private static void sendDataToServer(String command, String username, String password) {
-        String serverAddress = "localhost";
-        int port = 12345;
-
-        try (Socket socket = new Socket(serverAddress, port);
-             InputStream input = socket.getInputStream();
-             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-             OutputStream output = socket.getOutputStream();
-             PrintWriter writer = new PrintWriter(output, true)) {
-
-            writer.println(command);
-            writer.println(username);
-            writer.println(password);
-
-            // Чтение и вывод ответа от сервера
-            String response = reader.readLine();
-            statusLabel.setText(response);
-            System.out.println("Ответ от сервера: " + response);  // Логирование ответа от сервера
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-}
+//package client;
+//
+//import javafx.application.Application;
+//import javafx.scene.Scene;
+//import javafx.scene.control.*;
+//import javafx.scene.layout.*;
+//import javafx.stage.Stage;
+//
+//import java.io.*;
+//import java.net.Socket;
+//
+//public class AuthWindow extends Application {
+//
+//    private static Label statusLabel;
+//
+//    public static void main(String[] args) {
+//        launch(args);  // Запуск JavaFX
+//    }
+//
+//    @Override
+//    public void start(Stage primaryStage) {
+//        primaryStage.setTitle("Авторизация");
+//
+//        // Создание панели для компонентов
+//        VBox vbox = new VBox(10);  // Вертикальное размещение с отступами
+//        vbox.setStyle("-fx-padding: 20; -fx-alignment: center;");
+//
+//        // Поля ввода для логина и пароля
+//        TextField userText = new TextField();
+//        userText.setPromptText("Имя пользователя");
+//
+//        PasswordField passwordText = new PasswordField();
+//        passwordText.setPromptText("Пароль");
+//
+//        // Кнопки
+//        Button loginButton = new Button("Войти");
+//        loginButton.setStyle("-fx-background-color: #007BFF; -fx-text-fill: white;");
+//        loginButton.setOnAction(e -> {
+//            String username = userText.getText();
+//            String password = passwordText.getText();
+//            sendDataToServer("LOGIN", username, password);
+//        });
+//
+//        Button registerButton = new Button("Зарегистрироваться");
+//        registerButton.setStyle("-fx-background-color: #28A745; -fx-text-fill: white;");
+//        registerButton.setOnAction(e -> {
+//            String username = userText.getText();
+//            String password = passwordText.getText();
+//
+//            // Проверка длины пароля
+//            if (password.length() < 8) {
+//                statusLabel.setText("❌ Пароль должен содержать минимум 8 символов.");
+//            } else {
+//                sendDataToServer("REGISTER", username, password);
+//            }
+//        });
+//
+//        // Статусная метка
+//        statusLabel = new Label("");
+//        statusLabel.setStyle("-fx-text-fill: red;");
+//
+//        // Добавление компонентов в панель
+//        vbox.getChildren().addAll(userText, passwordText, loginButton, registerButton, statusLabel);
+//
+//        // Настройка сцены и окна
+//        Scene scene = new Scene(vbox, 400, 250);
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+//    }
+//
+//    private static void sendDataToServer(String command, String username, String password) {
+//        String serverAddress = "localhost";
+//        int port = 12345;
+//
+//        try (Socket socket = new Socket(serverAddress, port);
+//             InputStream input = socket.getInputStream();
+//             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+//             OutputStream output = socket.getOutputStream();
+//             PrintWriter writer = new PrintWriter(output, true)) {
+//
+//            writer.println(command);  // Отправляем команду (LOGIN или REGISTER)
+//            writer.println(username);  // Отправляем логин
+//            writer.println(password);  // Отправляем пароль
+//
+//            // Чтение и вывод ответа от сервера
+//            String response = reader.readLine();
+//            statusLabel.setText(response);
+//            System.out.println("Ответ от сервера: " + response);  // Логирование ответа от сервера
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="20" alignment="CENTER" fx:controller="client.controllers.GuestWindowController" style="-fx-padding: 30;">
+    <Button text="Зарегистрироваться" fx:id="registerButton" style="-fx-background-color: #28A745; -fx-text-fill: white;"/>
+    <Button text="Войти" fx:id="loginButton" style="-fx-background-color: #007BFF; -fx-text-fill: white;"/>
+</VBox>

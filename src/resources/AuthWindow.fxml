@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="20" alignment="CENTER" fx:controller="client.controllers.AuthWindowController" style="-fx-padding: 30;">
+    <!-- Заголовок окна -->
+    <Label text="Авторизация" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #000000; -fx-font-family: 'Arial';"/>
+
+    <!-- Поле для логина -->
+    <Label text="Имя пользователя:" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #000000;"/>
+    <TextField fx:id="userText" promptText="Введите имя пользователя" style="-fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ccc; -fx-font-size: 14px; -fx-pref-width: 250px;"/>
+
+    <!-- Поле для пароля -->
+    <Label text="Пароль:" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #000000;"/>
+    <PasswordField fx:id="passwordText" promptText="Введите пароль" style="-fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ccc; -fx-font-size: 14px; -fx-pref-width: 250px;"/>
+
+    <!-- Кнопки -->
+    <Button text="Войти" fx:id="loginButton" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10; -fx-pref-width: 250px; -fx-font-family: 'Arial';"/>
+    <Button text="Зарегистрироваться" fx:id="registerButton" style="-fx-background-color: #007BFF; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10; -fx-pref-width: 250px; -fx-font-family: 'Arial';"/>
+
+    <!-- Статусная метка -->
+    <Label fx:id="statusLabel" text="" style="-fx-font-size: 14px; -fx-text-fill: red; -fx-font-family: 'Arial';"/>
+</VBox>

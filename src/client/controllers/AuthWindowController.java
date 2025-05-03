@@ -1,11 +1,11 @@
 package client.controllers;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
 import client.AuthWindowApp;
 import database.DatabaseManager;
 import model.User;
-
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.event.ActionEvent;
 import java.io.IOException;
 
 public class AuthWindowController {
@@ -65,7 +65,7 @@ public class AuthWindowController {
                     authWindowApp.switchToWindow("admin"); // Переход на окно администратора
                     break;
                 case "employee":
-                    authWindowApp.switchToWindow("driver"); // Переход на окно водителя
+                    authWindowApp.switchToWindow("employee"); // Переход на окно водителя
                     break;
                 case "guest":
                     authWindowApp.switchToWindow("guest"); // Переход на окно гостя
@@ -81,7 +81,20 @@ public class AuthWindowController {
     }
 
     private void register() {
-        // Логика регистрации (например, добавление пользователя в базу данных)
-        System.out.println("Регистрация нового пользователя");
+        String username = userText.getText();
+        String password = passwordText.getText();
+
+        // Проверка на пустые поля
+        if (username.trim().isEmpty() || password.trim().isEmpty()) {
+            statusLabel.setText("❌ Логин и пароль не могут быть пустыми.");
+            return;
+        }
+
+        // Используем метод addUser из DatabaseManager для добавления пользователя
+        if (DatabaseManager.addUser(username, password, "guest")) {
+            statusLabel.setText("✅ Регистрация прошла успешно.");
+        } else {
+            statusLabel.setText("❌ Ошибка при регистрации.");
+        }
     }
 }

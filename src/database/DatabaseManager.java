@@ -56,6 +56,7 @@ public class DatabaseManager {
         return null;
     }
 
+    // Метод для обновления роли пользователя
     public static boolean updateUserRole(String username, String newRole) {
         String query = "UPDATE users SET role_id = (SELECT id FROM roles WHERE role_name = ?) " +
                 "WHERE username = ?";
@@ -84,6 +85,39 @@ public class DatabaseManager {
             System.out.println("✅ Водитель " + name + " добавлен в базу данных.");
         } catch (SQLException e) {
             System.out.println("❌ Ошибка при добавлении водителя: " + e.getMessage());
+        }
+    }
+
+    // Метод для получения ID водителя по номеру лицензии
+    public static int getDriverIdByLicense(String licenseNumber) {
+        String query = "SELECT id FROM drivers WHERE license_number = ?";
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, licenseNumber);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ Ошибка при поиске водителя: " + e.getMessage());
+        }
+        return -1;
+    }
+
+    // Метод для регистрации транспортного средства
+    public static boolean registerTransport(String vehicleNumber, int driverId) {
+        String query = "INSERT INTO transport (vehicle_number, driver_id) VALUES (?, ?)";
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, vehicleNumber);
+            pstmt.setInt(2, driverId);
+            pstmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("❌ Ошибка при регистрации транспорта: " + e.getMessage());
+            return false;
         }
     }
 }

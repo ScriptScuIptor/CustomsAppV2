@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import client.controllers.AuthWindowController;
 
-
 import java.io.IOException;
 
 public class AuthWindowApp extends Application {
@@ -31,7 +30,6 @@ public class AuthWindowApp extends Application {
         primaryStage.show();
     }
 
-    // Метод для переключения на окно в зависимости от роли
     public void switchToWindow(String role) throws IOException {
         FXMLLoader loader;
         Scene scene;
@@ -39,12 +37,14 @@ public class AuthWindowApp extends Application {
         if ("admin".equals(role)) {
             loader = new FXMLLoader(getClass().getResource("/resources/AdminWindow.fxml"));
             scene = new Scene(loader.load());
-        } else if ("driver".equals(role)) {
+        } else if ("employee".equals(role)) {
             loader = new FXMLLoader(getClass().getResource("/resources/DriverWindow.fxml"));
             scene = new Scene(loader.load());
-        } else {
+        } else if ("guest".equals(role)) {
             loader = new FXMLLoader(getClass().getResource("/resources/GuestWindow.fxml"));
             scene = new Scene(loader.load());
+        } else {
+            throw new IllegalArgumentException("Unknown role: " + role);
         }
 
         primaryStage.setScene(scene);

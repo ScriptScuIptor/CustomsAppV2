@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.AdminLogsController"
+            style="-fx-background-color: #2E3348;" prefWidth="1000" prefHeight="600">
+
+    <top>
+        <Label text="Логи действий администратора"
+               style="-fx-font-size: 18px; -fx-text-fill: white;"
+               BorderPane.alignment="CENTER"/>
+    </top>
+
+    <center>
+        <VBox spacing="10" alignment="TOP_CENTER" style="-fx-padding: 20;">
+            <TableView fx:id="logsTable" prefHeight="500">
+                <columns>
+                    <TableColumn fx:id="timestampColumn" text="Время" prefWidth="200"/>
+                    <TableColumn fx:id="actionColumn" text="Действие" prefWidth="400"/>
+                    <TableColumn fx:id="performedByColumn" text="Кто выполнил" prefWidth="300"/>
+                </columns>
+            </TableView>
+            <Label fx:id="statusLabel" textFill="RED"/>
+        </VBox>
+    </center>
+</BorderPane>

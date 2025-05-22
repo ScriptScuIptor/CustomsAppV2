@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="387.0" prefWidth="592.0" style="-fx-background-color: #2E3348;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="controllers.RegisterController">
+
+    <VBox alignment="CENTER" spacing="12.0" style="-fx-padding: 20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+        <!-- Заголовок -->
+        <Label text="Регистрация" textFill="WHITE">
+            <font>
+                <Font name="JetBrains Mono SemiBold Italic" size="26.0" />
+            </font>
+        </Label>
+
+        <!-- Поля ввода -->
+        <TextField fx:id="usernameField" maxWidth="350.0" prefHeight="35.0" promptText="Имя пользователя" />
+
+        <PasswordField fx:id="passwordField" maxWidth="350.0" prefHeight="35.0" promptText="Пароль" />
+
+        <!-- Статус -->
+        <Label fx:id="statusLabel" textFill="red" />
+
+        <!-- Кнопки -->
+        <HBox alignment="CENTER" spacing="15.0">
+            <Button onAction="#onRegister" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #f39c63; -fx-background-radius: 20;" text="Зарегистрироваться" textFill="WHITE">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Button>
+
+            <Button onAction="#goToAuth" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #f39c63; -fx-background-radius: 20;" text="Назад" textFill="WHITE">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Button>
+        </HBox>
+
+    </VBox>
+</AnchorPane>

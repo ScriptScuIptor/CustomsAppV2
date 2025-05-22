@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.chart.PieChart?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.AdminStatsController"
+            prefWidth="1000" prefHeight="700"
+            style="-fx-background-color: #2E3348;">
+
+    <top>
+        <Label text="Статистика заявок"
+               style="-fx-font-size: 18px; -fx-text-fill: white; -fx-padding: 10;"
+               BorderPane.alignment="CENTER"/>
+    </top>
+
+    <center>
+        <TabPane fx:id="statsTabPane" tabClosingPolicy="UNAVAILABLE" style="-fx-padding: 10;">
+            <Tab text="Логи администратора">
+                <fx:include source="/AdminLogsWindow.fxml"/>
+            </Tab>
+            <Tab text="Попытки входа">
+                <fx:include source="/LoginAttemptsWindow.fxml"/>
+            </Tab>
+            <Tab text="Диаграмма по заявкам">
+                <VBox spacing="15" alignment="CENTER" style="-fx-padding: 20;">
+                    <PieChart fx:id="requestPieChart" prefHeight="400" prefWidth="600"/>
+                    <Label fx:id="statusLabel" textFill="RED"/>
+                </VBox>
+            </Tab>
+        </TabPane>
+
+    </center>
+
+    <bottom>
+        <Button text="Назад" onAction="#onBack" style="-fx-background-color: #f39c63; -fx-text-fill: white; -fx-font-size: 14px;"
+                BorderPane.alignment="CENTER" maxWidth="120" />
+    </bottom>
+</BorderPane>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="619.0" prefWidth="658.0" spacing="10" style="-fx-background-color: #2E3348; -fx-padding: 20;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminRequestsController">
+
+    <Label style="-fx-text-fill: white; -fx-font-size: 18px;" text="Обработка заявок" />
+
+    <HBox spacing="10">
+        <Button onAction="#showAllRequests" text="Все" />
+        <Button onAction="#showApprovedRequests" text="Одобренные" />
+        <Button onAction="#showUnapprovedRequests" text="Неодобренные" />
+    </HBox>
+
+    <TableView fx:id="requestsTable" prefHeight="400">
+        <columns>
+            <TableColumn fx:id="descriptionColumn" prefWidth="167.33334922790527" text="Описание" />
+            <TableColumn fx:id="approvedColumn" prefWidth="83.33332824707031" text="Одобрено" />
+            <TableColumn fx:id="driverColumn" prefWidth="108.0" text="Имя водителя" />
+            <TableColumn fx:id="vehicleColumn" prefWidth="115.33331298828125" text="Номер ТС" />
+            <TableColumn fx:id="categoryColumn" minWidth="5.0" prefWidth="142.00003051757812" text="Тип ТС" />
+        </columns>
+    </TableView>
+
+    <Button onAction="#approveSelected" style="-fx-background-color: #f39c63; -fx-text-fill: white;" text="Одобрить выбранную заявку" />
+
+    <Label fx:id="statusLabel" textFill="RED" />
+
+    <Button maxWidth="100" onAction="#onBack" style="-fx-background-color: #f39c63; -fx-text-fill: white;" text="Назад" />
+</VBox>

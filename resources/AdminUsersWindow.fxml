@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="555.0" prefWidth="620.0" spacing="10" style="-fx-background-color: #2E3348; -fx-padding: 20;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminUsersController">
+
+    <Label style="-fx-text-fill: white; -fx-font-size: 18px;" text="Управление пользователями" />
+
+    <HBox spacing="10">
+        <TextField fx:id="searchField" promptText="Поиск по имени пользователя" />
+        <Button onAction="#searchUser" style="-fx-background-color: #f39c63; -fx-text-fill: white;" text="Найти" />
+        <Button onAction="#loadUsers" style="-fx-background-color: #888888; -fx-text-fill: white;" text="Сбросить" />
+    </HBox>
+
+    <TableView fx:id="usersTable" prefHeight="400">
+        <columns>
+            <TableColumn fx:id="userIdColumn" text="UUID" />
+            <TableColumn fx:id="usernameColumn" text="Имя пользователя" />
+            <TableColumn fx:id="roleColumn" text="Роль" />
+        </columns>
+    </TableView>
+
+    <HBox alignment="CENTER" spacing="10">
+        <TextField fx:id="userIdToDelete" promptText="UUID пользователя" />
+        <Button onAction="#deleteUser" style="-fx-background-color: #f39c63; -fx-text-fill: white;" text="Удалить" />
+        <Button onAction="#copySelectedUserId" style="-fx-background-color: #f39c63; -fx-text-fill: white;" text="Скопировать выбранный UUID" />
+    </HBox>
+
+    <Button onAction="#onBack" style="-fx-background-color: gray; -fx-text-fill: white;" text="Назад" />
+
+    <Label fx:id="statusLabel" textFill="RED" />
+</VBox>
